@@ -68,13 +68,134 @@
           </div>
       </section>
 
-      <section id="projetos" class="projects">
+      <!-- <section id="projetos" class="projects">
           <h2>Meus Projetos</h2>
           <div class="project-grid">
               <div class="project-card">Projeto 1</div>
               <div class="project-card">Projeto 2</div>
               <div class="project-card">Projeto 3</div>
           </div>
+      </section> -->
+
+      <section id="projetos" class="projects">
+        <h2>Meus Projetos</h2>
+        <div class="project-grid">
+
+          <div class="project-card" data-carousel>
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    <img src="img1.jpg" alt="Slide 1">
+                    <img src="img2.jpg" alt="Slide 2">
+                    <img src="img3.jpg" alt="Slide 3">
+                </div>
+
+                <button class="prev" data-button="prev">&#10094;</button>
+                <button class="next" data-button="next">&#10095;</button>
+
+                <div class="carousel-indicators"></div>
+            </div>
+            <div class="project-info">
+                <h3>Nome do Projeto</h3>
+                <p>Estratégia e Design</p>
+            </div>
+          </div>
+
+          <div class="project-card" data-carousel>
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    <img src="img1.jpg" alt="Slide 1">
+                    <img src="img2.jpg" alt="Slide 2">
+                    <img src="img3.jpg" alt="Slide 3">
+                </div>
+
+                <button class="prev" data-button="prev">&#10094;</button>
+                <button class="next" data-button="next">&#10095;</button>
+
+                <div class="carousel-indicators"></div>
+            </div>
+            <div class="project-info">
+                <h3>Nome do Projeto</h3>
+                <p>Estratégia e Design</p>
+            </div>
+          </div>
+
+          <div class="project-card" data-carousel>
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    <img src="img1.jpg" alt="Slide 1">
+                    <img src="img2.jpg" alt="Slide 2">
+                    <img src="img3.jpg" alt="Slide 3">
+                </div>
+
+                <button class="prev" data-button="prev">&#10094;</button>
+                <button class="next" data-button="next">&#10095;</button>
+
+                <div class="carousel-indicators"></div>
+            </div>
+            <div class="project-info">
+                <h3>Nome do Projeto</h3>
+                <p>Estratégia e Design</p>
+            </div>
+          </div>
+
+          <div class="project-card" data-carousel>
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    <img src="img1.jpg" alt="Slide 1">
+                    <img src="img2.jpg" alt="Slide 2">
+                    <img src="img3.jpg" alt="Slide 3">
+                </div>
+
+                <button class="prev" data-button="prev">&#10094;</button>
+                <button class="next" data-button="next">&#10095;</button>
+
+                <div class="carousel-indicators"></div>
+            </div>
+            <div class="project-info">
+                <h3>Nome do Projeto</h3>
+                <p>Estratégia e Design</p>
+            </div>
+          </div>
+
+          <div class="project-card" data-carousel>
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    <img src="img1.jpg" alt="Slide 1">
+                    <img src="img2.jpg" alt="Slide 2">
+                    <img src="img3.jpg" alt="Slide 3">
+                </div>
+
+                <button class="prev" data-button="prev">&#10094;</button>
+                <button class="next" data-button="next">&#10095;</button>
+
+                <div class="carousel-indicators"></div>
+            </div>
+            <div class="project-info">
+                <h3>Nome do Projeto</h3>
+                <p>Estratégia e Design</p>
+            </div>
+          </div>
+
+          <div class="project-card" data-carousel>
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    <img src="img1.jpg" alt="Slide 1">
+                    <img src="img2.jpg" alt="Slide 2">
+                    <img src="img3.jpg" alt="Slide 3">
+                </div>
+
+                <button class="prev" data-button="prev">&#10094;</button>
+                <button class="next" data-button="next">&#10095;</button>
+
+                <div class="carousel-indicators"></div>
+            </div>
+            <div class="project-info">
+                <h3>Nome do Projeto</h3>
+                <p>Estratégia e Design</p>
+            </div>
+          </div>
+
+        </div>
       </section>
 
       <section id="pacotes" class="pricing">
@@ -158,6 +279,51 @@
             </div>
         </div>
       </section>
+
+      <script>
+        document.querySelectorAll('[data-carousel]').forEach(carousel => {
+        const slides = carousel.querySelector('.carousel-slides');
+        const images = carousel.querySelectorAll('.carousel-slides img');
+        const nextBtn = carousel.querySelector('[data-button="next"]');
+        const prevBtn = carousel.querySelector('[data-button="prev"]');
+        const indicatorContainer = carousel.querySelector('.carousel-indicators');
+
+        let counter = 0;
+        const size = 100;
+
+        // Criar pontinhos dinamicamente
+        images.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            indicatorContainer.appendChild(dot);
+        });
+
+        const dots = indicatorContainer.querySelectorAll('.dot');
+
+        function updateDots() {
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[counter].classList.add('active');
+        }
+
+        function goToSlide(index) {
+            counter = index;
+            slides.style.transform = `translateX(${-size * counter}%)`;
+            updateDots();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            counter = (counter >= images.length - 1) ? 0 : counter + 1;
+            goToSlide(counter);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            counter = (counter <= 0) ? images.length - 1 : counter - 1;
+            goToSlide(counter);
+        });
+    });
+      </script>
 
   </body>
 </html>

@@ -400,3 +400,89 @@ body {
 .featured .btn-contract:hover {
     filter: brightness(1.1);
 }
+
+/* carrossel */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 350px; /* Altura da foto do projeto */
+    overflow: hidden;
+}
+
+.carousel-slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slides img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botões de Navegação */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 18px;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.prev:hover, .next:hover { background: #fff; }
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.project-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.dot.active {
+    background: #fff;
+    width: 25px; /* Efeito de pílula para o ponto ativo */
+    border-radius: 10px;
+}
+ /* fim carrossel */
