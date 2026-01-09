@@ -23,7 +23,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 10%;
+    padding: 15px 10%;
     background: #fff;
     position: fixed;
     width: 100%;
@@ -173,22 +173,39 @@ body {
     padding: 80px 10%;
     text-align: center;
 }
+.project-info {
+    padding: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3,1fr);
     gap: 20px;
-    margin-top: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .project-card {
-    background: #ddd;
+    /* background: #ddd;
     height: 300px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    font-weight: bold;
+    font-weight: bold; */
+    background: #fff; /* Fundo branco ou neutro é melhor para social media */
+    width: 100%;
+    max-width: 320px; /* Define uma largura máxima para o card não esticar demais */
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin: 0 auto
 }
 
 /* Responsividade */
@@ -405,8 +422,10 @@ body {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .project-card {
@@ -417,10 +436,16 @@ body {
 }
 
 .carousel-container {
-    position: relative;
+    /* position: relative;
     width: 100%;
-    height: 350px; /* Altura da foto do projeto */
+    height: 300px;
     overflow: hidden;
+    background-color: #fcfcfc; */
+    width: 100%;
+    /* Remova a altura fixa daqui também ou use aspect-ratio */
+    aspect-ratio: 1 / 1; /* Isso força a imagem a ser um quadrado perfeito, muito comum no IG */
+    overflow: hidden;
+    position: relative;
 }
 
 .carousel-slides {
@@ -433,7 +458,8 @@ body {
 .carousel-slides img {
     min-width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: #f9f9f9;
 }
 
 /* Botões de Navegação */
@@ -459,30 +485,72 @@ body {
     padding: 20px;
     text-align: left;
 }
-
-.carousel-indicators {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 3;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-    border: 1px solid rgba(0,0,0,0.1);
-}
-
-.dot.active {
-    background: #fff;
-    width: 25px; /* Efeito de pílula para o ponto ativo */
-    border-radius: 10px;
-}
  /* fim carrossel */
+
+ /* footer */
+
+.main-footer {
+    background-color: #ffffff;
+    padding: 60px 10% 30px;
+    border-top: 1px solid #eee;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente o container */
+}
+
+.footer-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Garante que o conteúdo interno fique no meio */
+    margin-bottom: 40px;
+}
+
+.footer-contact {
+    text-align: center; /* Centraliza o texto e o botão */
+    max-width: 400px;
+}
+
+.footer-contact h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--dark-color);
+}
+
+.footer-contact p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza ícone + texto */
+    gap: 10px;
+}
+
+.cta-footer {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 35px;
+    background: var(--dark-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cta-footer:hover {
+    background: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.footer-bottom {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #999;
+}
