@@ -37,14 +37,25 @@ body {
 }
 
 .logo {
-    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column; /* Coloca um embaixo do outro */
+    align-items: center;    /* Centraliza os dois textos */
+    justify-content: center;
+    line-height: 1.2;       /* Diminui o espaço entre o nome e o cargo */
+    flex: 1;                /* Mantém o alinhamento central na navbar */
+    font-size: 1.4rem;      /* Tamanho do nome principal */
     font-weight: bold;
     letter-spacing: 2px;
-    align-items: center;
-    text-align: center;
-    flex: 1;
     text-transform: uppercase;
-    white-space: nowrap;
+}
+
+.subtitle-logo {
+    font-size: 0.7rem;      /* Letra significativamente menor */
+    font-weight: 400;       /* Letra mais fina para contraste */
+    letter-spacing: 4px;    /* Mais espaço entre letras para dar um ar premium */
+    text-transform: uppercase;
+    color: var(--primary-color); /* Ou a cor que você preferir */
+    margin-top: 5px;        /* Pequeno ajuste de distância do nome */
 }
 
 .logo span {
