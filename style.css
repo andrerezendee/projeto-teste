@@ -171,6 +171,7 @@ body {
     flex: 1;
     min-width: 300px;
 }
+
 /* --- RESPONSIVIDADE (Mobile) --- */
 @media (max-width: 768px) {
     .hero {
