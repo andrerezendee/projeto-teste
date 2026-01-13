@@ -29,7 +29,7 @@
       </nav>
 
       <header id="home" class="hero">
-          <div class="hero-container">
+          <div class="hero-container reveal">
               <div class="hero-image">
                   <img src="/images/IMG_8624.JPG" alt="Foto da Social Media">
               </div>
@@ -48,7 +48,7 @@
       </header>
       <hr>
       <section class="biografia">
-    <div class="bio-container">
+    <div class="bio-container reveal">
 
         <div class="bio-content">
             <span class="subtitle">Quem somos</span>
@@ -81,8 +81,8 @@
               Seu navegador não suporta vídeos.
           </video>
           <div class="video-text">
-              <h2>Bastidores do Sucesso</h2>
-              <p>Veja como crio estratégias que engajam e convertem.</p>
+              <h2 class="reveal">Bastidores do Sucesso</h2>
+              <p class="reveal">Veja como crio estratégias que engajam e convertem.</p>
           </div>
       </section>
 
@@ -97,8 +97,8 @@
 
       <section id="projetos" class="projects">
         <div class="section-header-projects">
-            <span class="subtitle">Portfólio</span>
-            <h2>Meus Projetos</h2>
+            <span class="subtitle reveal">Portfólio</span>
+            <h2 class="reveal">Meus Projetos</h2>
         </div>
         <div class="project-container">
 
@@ -268,8 +268,8 @@
 
           <div class="video-overlay"></div>
           <div class="section-header">
-              <span class="subtitle">Depoimentos</span>
-              <h2>Resultados que <span>florescem</span></h2>
+              <span class="subtitle reveal">Depoimentos</span>
+              <h2 class="reveal">Resultados que <span>florescem</span></h2>
           </div>
 
           <div class="feedback-grid">
@@ -303,9 +303,9 @@
       </section>
 
       <section id="pacotes" class="pricing">
-        <div class="section-header">
-            <span class="subtitle">Investimento</span>
-            <h2>Nossos Pacotes de <span>Florescimento</span></i></h2>
+        <div class="section-header-pricing">
+            <span class="subtitle reveal">Investimento</span>
+            <h2 class="reveal">Nossos Pacotes de <span>Florescimento</span></i></h2>
         </div>
 
         <div class="pricing-grid">
@@ -551,6 +551,25 @@
                   menu.classList.remove('is-active');
                   menuLinks.classList.remove('active');
               });
+          });
+
+          const revealObserver = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      // Quando entra na tela, adiciona a classe 'active'
+                      entry.target.classList.add('active');
+                  } else {
+                      // Quando sai da tela, remove para poder animar de novo ao voltar
+                      entry.target.classList.remove('active');
+                  }
+              });
+          }, {
+              threshold: 0.15 // Dispara quando 15% do elemento estiver visível
+          });
+
+          // Seleciona todos os elementos que marcamos com a classe 'reveal'
+          document.querySelectorAll('.reveal').forEach(el => {
+              revealObserver.observe(el);
           });
 
       </script>
