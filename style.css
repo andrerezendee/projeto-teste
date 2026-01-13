@@ -151,6 +151,9 @@ body {
     align-items: center;
     background: #fff;
 }
+.hero-content p {
+  margin-bottom: 20px;
+}
 
 .hero-container {
     display: flex;
@@ -170,7 +173,9 @@ body {
 .hero-content {
     flex: 1;
     min-width: 300px;
+
 }
+
 /* --- RESPONSIVIDADE (Mobile) --- */
 @media (max-width: 768px) {
     .hero {
@@ -312,9 +317,35 @@ body {
 }
 
 /* Projetos */
-.projects {
-    padding: 80px 10%;
+.section-header-projects {
+    position: relative;
+    padding: 60px 20px; /* Dá espaço para a imagem aparecer */
     text-align: center;
+
+
+}
+.projects {
+
+    overflow: hidden;
+    background-color: #fff;
+    background: url('/images/fundo_projects.png') no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+
+}
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.project-container {
+  background: linear-gradient(to top, #97a874, transparent);
+}
+.project-slider {
+    width: 100%;
+    overflow: hidden; /* Importante para não bugar a página */
+    padding: 20px 0;
 }
 .project-info {
     padding: 15px;
@@ -323,30 +354,76 @@ body {
 }
 
 .project-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    justify-content: center;
-    justify-items: center;
+    display: flex !important; /* Força flexbox */
+    flex-wrap: nowrap !important; /* PROÍBE quebrar linha */
+    gap: 30px;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    width: max-content; /* Faz a div ser do tamanho de todos os cards somados */
 }
 
 .project-card {
-    background: #fff; /* Fundo branco ou neutro é melhor para social media */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    min-width: 300px; /* Largura fixa de cada card */
+    max-width: 300px;
+    flex-shrink: 0; /* Impede que o navegador esprema o card */
+    background: #fff;
     border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    margin: 0 auto;
-    max-width: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    background: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.slider-btn:hover { background: var(--primary-color); color: #fff; }
+.prev-slider { left: 10px; }
+.next-slider { right: 10px; }
+
+/* Mobile: permitir arrastar com o dedo */
+@media (max-width: 768px) {
+    .project-grid {
+        /* IMPORTANTE: Resetar o alinhamento para o início */
+        display: flex !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+
+        /* Garante que a esteira tenha espaço para todos */
+        width: max-content !important;
+        padding: 0 20px; /* Margem para o primeiro card não colar na borda */
+        gap: 15px;
+    }
+
+    .project-slider {
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        /* Esconde a barra de rolagem visual, mas mantém a função */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .project-slider::-webkit-scrollbar {
+        display: none; /* Esconde barra no Chrome/Safari */
+    }
+
+    .project-card {
+        scroll-snap-align: start; /* Mude para 'start' para melhor precisão mobile */
+        flex: 0 0 280px; /* Trava o tamanho sem esmagar */
+        min-width: 280px;
+    }
+
+    .slider-btn { display: none !important; }
 }
 .mute-toggle-global {
     position: absolute;
@@ -464,8 +541,8 @@ body {
 }
 
 .bio-text p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-size: 1.0rem;
     color: #444;
     line-height: 1.7;
 }
@@ -491,10 +568,13 @@ body {
 .feedback-section {
     position: relative;
     padding: 100px 10%;
-    /* Substitua pelo caminho da sua imagem */
-    background: url('imagem_fundo.jpeg') no-repeat center center;
-    background-size: cover;
-    overflow: hidden;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Garante que o vídeo não saia dos limites */
+    color: #fff;
+    background: linear-gradient(to bottom, #97a874, transparent);/* Se o vídeo for escuro, mude a cor do texto */
 }
 .feedback-section::before {
     content: "";
@@ -503,13 +583,35 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.7); /* Ajuste a opacidade conforme necessário */
+    /* background: rgba(255, 255, 255, 0.7); Ajuste a opacidade conforme necessário */
     z-index: 1;
+}
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2; /* Fica atrás de tudo */
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7); /* Overlay branco para manter a estética leve */
+    z-index: -1; /* Fica entre o vídeo e o texto */
 }
 /* Centralização do Cabeçalho */
 .feedback-section .section-header {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     text-align: center; /* Centraliza o texto */
     margin-bottom: 50px;
     max-width: 800px;
@@ -521,10 +623,18 @@ body {
     display: block;
     text-align: center;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .feedback-section .section-header h2 {
     text-align: center;
+    position: relative;
+    z-index: 1;
+    color: black;
+}
+.section-header span {
+  color: #fff;
 }
 
 .feedback-grid {
@@ -837,10 +947,11 @@ body {
     background-color: #ffffff;
     padding: 60px 10% 30px;
     border-top: 1px solid #eee;
-    color: #333;
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centraliza horizontalmente o container */
+    background: linear-gradient(to top, #97a874, #fff);
 }
 
 .footer-container {
@@ -848,6 +959,7 @@ body {
     display: flex;
     justify-content: center; /* Garante que o conteúdo interno fique no meio */
     margin-bottom: 40px;
+
 }
 
 .footer-contact {
@@ -860,12 +972,12 @@ body {
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: var(--dark-color);
+    color: black;
 }
 
 .footer-contact p {
     font-size: 0.9rem;
-    color: #666;
+    color: black;
     margin-bottom: 12px;
     display: flex;
     align-items: center;
@@ -896,7 +1008,7 @@ body {
     width: 100%;
     text-align: center;
     font-size: 0.8rem;
-    color: #999;
+    color: black;
 }
 .footer_link {
   color: inherit;
