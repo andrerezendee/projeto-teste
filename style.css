@@ -328,7 +328,7 @@ body {
 
     overflow: hidden;
     background-color: #fff;
-    background: url('fundo_projects.png') no-repeat center center;
+    background: url('/images/fundo_projects.png') no-repeat center center;
     background-size: cover;
     overflow: hidden;
 
@@ -393,15 +393,37 @@ body {
 
 /* Mobile: permitir arrastar com o dedo */
 @media (max-width: 768px) {
-    .project-slider {
-        overflow-x: auto; /* Permite scroll manual no celular */
-        scroll-snap-type: x mandatory;
+    .project-grid {
+        /* IMPORTANTE: Resetar o alinhamento para o início */
+        display: flex !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+
+        /* Garante que a esteira tenha espaço para todos */
+        width: max-content !important;
+        padding: 0 20px; /* Margem para o primeiro card não colar na borda */
+        gap: 15px;
     }
+
+    .project-slider {
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        /* Esconde a barra de rolagem visual, mas mantém a função */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .project-slider::-webkit-scrollbar {
+        display: none; /* Esconde barra no Chrome/Safari */
+    }
+
     .project-card {
-        scroll-snap-align: center;
+        scroll-snap-align: start; /* Mude para 'start' para melhor precisão mobile */
+        flex: 0 0 280px; /* Trava o tamanho sem esmagar */
         min-width: 280px;
     }
-    .slider-btn { display: none; } /* Esconde setas no mobile */
+
+    .slider-btn { display: none !important; }
 }
 .mute-toggle-global {
     position: absolute;
