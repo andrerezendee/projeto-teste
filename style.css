@@ -385,7 +385,7 @@ h2.reveal { transition-delay: 0.3s; }
     }
 
     .video-text h2 {
-        font-size: 1.6rem; /* Tamanho de fonte mais confortável para celular */
+        font-size: 1.3rem; /* Tamanho de fonte mais confortável para celular */
         padding: 0 10px;
     }
 
